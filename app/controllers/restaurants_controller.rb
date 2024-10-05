@@ -3,6 +3,11 @@ class RestaurantsController < ApplicationController
     @restaurants = Restaurant.all
   end
 
+  def show
+    @restaurant = Restaurant.find(params[:id])
+    @review = Review.new
+  end
+  
   def new
     @restaurant = Restaurant.new # Needed to instantiate the form_with
   end
@@ -14,11 +19,6 @@ class RestaurantsController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
-  end
-
-  def show
-    @restaurant = Restaurant.find(params[:id])
-    @review = Review.new
   end
 
   private
